@@ -1,0 +1,40 @@
+@import '@src/index.scss';
+$block-name: "UnsplashImage";
+
+.#{$block-name} {
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    border: calc(0.5 * var(--gap-xxs)) solid rgb(var(--color-primary));
+    box-shadow: 0 0 var(--gap-sm) rgba(0, 0, 0, 0.25);
+    border-radius: var(--gap-xs);
+    overflow: hidden;
+
+    &:hover .#{$block-name}__tooltip {
+      opacity: 1;
+    }
+
+    &:hover .UnsplashImageInfo__wrapper {
+      opacity: 1;
+      transition: opacity 0.3s 0.75s;
+    }
+  }
+
+  &__tooltip {
+    position: fixed;
+    background-color: rgb(var(--color-white));
+    color: rgb(var(--color-primary));
+    text-align: center;
+    border-radius: 6px;
+    border: 2px solid rgb(var(--color-primary));
+    padding: var(--gap-xxs) var(--gap-xs);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+  }
+}

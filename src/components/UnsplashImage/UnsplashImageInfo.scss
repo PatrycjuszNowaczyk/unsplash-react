@@ -1,0 +1,90 @@
+@import '@src/index.scss';
+$block-name: "UnsplashImageInfo";
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rollDown {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.#{$block-name} {
+  &__wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: calc(0.5 * var(--gap-xs)) calc(0.5 * var(--gap-sm));
+    background-color: rgba(var(--color-primary), 0.9);
+    color: rgb(var(--color-white));
+    opacity: 0;
+    animation: rollDown 0.3s 0.75s;
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(0.5 * var(--gap-xs));
+  }
+
+  &__detail {
+    display: flex;
+    flex-direction: column;
+
+    &--fullWidth {
+      grid-column: 1 / -1;
+
+      .#{$block-name}__detailTitle {
+        text-align: center;
+      }
+
+      .#{$block-name}__detailValue {
+          text-align: center;
+      }
+    }
+  }
+
+  &__detailTitle {
+    font-weight: bold;
+  }
+
+  &__detailValue {
+      font-size: calc(var(--font-size-sm) * 0.9);
+  }
+
+  &__detailLink {
+    color: rgb(var(--color-white));
+    text-decoration: none;
+    text-align: center;
+    font-size: calc(var(--font-size-sm) * 0.9);
+
+    &::after {
+      content: " →";
+    }
+
+    &:hover {
+      text-decoration: underline;
+
+    }
+  }
+
+  &__divider {
+    margin-top: var(--gap-xs);
+    height: 1px;
+    background-color: rgb(var(--color-white));
+    border: none;
+  }
+}

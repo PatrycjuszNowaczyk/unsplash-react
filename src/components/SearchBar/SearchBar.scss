@@ -1,0 +1,83 @@
+@import '@src/index';
+$block-name: "SearchBar";
+
+.#{$block-name} {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__label {
+    margin-bottom: var(--gap-xxs);
+  }
+
+  &__inputWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 576px;
+
+    &:focus-within {
+      .SearchBar__button:hover {
+        border-color: rgb(var(--color-tertiary));
+
+        .material-symbols-sharp {
+          color: rgb(var(--color-tertiary));
+        }
+      }
+    }
+  }
+
+  &__input {
+    padding-right: var(--gap-md);
+    font-size: var(--font-size-sm);
+    color: rgb(var(--color-primary));
+
+    &:disabled {
+      background-color: rgb(var(--color-light-grey));
+      border-color: rgb(var(--color-grey));
+      color: rgb(var(--color-dark-grey));
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    right: calc(var(--gap-md) / 6);
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: calc(0.1 * 1em);
+    border: 2px solid rgb(var(--color-primary));
+    border-radius: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0;
+    font-size: calc(var(--font-size-sm));
+
+    .material-symbols-sharp {
+      font-size: var(--font-size-md);
+      color: rgb(var(--color-primary));
+    }
+
+    &:disabled {
+      border-color: rgb(var(--color-grey));
+      pointer-events: none;
+      opacity: 1;
+
+      .material-symbols-sharp {
+        color: rgb(var(--color-grey));
+      }
+    }
+  }
+}
+
+.#{$block-name}__inputWrapper:hover .SearchBar__button {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.#{$block-name}__input:focus + .SearchBar__button {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out;
+}

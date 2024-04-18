@@ -37,7 +37,7 @@ const App = () => {
     
     if (currentTerm !== term) {
       localStorage.setItem('term', term)
-      setImages(prevState => ({...prevState, data: [], isLoading: true, term: term, page: 1}))
+      setImages(prevState => ({...prevState, data: [], isLoading: true, term: term, page: 1, totalPages: 0, allLoaded: false}))
     }
     
     const data = await toast.promise(fetchImages(term, page), {

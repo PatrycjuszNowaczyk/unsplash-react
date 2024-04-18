@@ -10,6 +10,7 @@ const __dirname = dirname(__filename)
 // https://vitejs.dev/config/
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
+  base: './',
   plugins: [react()],
   resolve: {
     alias: {

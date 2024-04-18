@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Loader from '@components/Loader/Loader'
 import './ImageLazyLoader.scss'
 
@@ -12,6 +13,10 @@ function ImageLazyLoaderFunction({allImagesLoaded}, ref) {
       ) }
     </div>
   )
+}
+
+ImageLazyLoaderFunction.propTypes = {
+  allImagesLoaded: PropTypes.bool.isRequired
 }
 
 const ImageLazyLoader = React.forwardRef(ImageLazyLoaderFunction)

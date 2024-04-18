@@ -15,6 +15,7 @@ export default defineConfig({
       '@src': resolve(__dirname, 'src'),
       '@components': resolve(__dirname, 'src/components'),
       '@layouts': resolve(__dirname, 'src/layouts'),
+      '@assets': resolve(__dirname, 'src/assets')
     },
   },
 })

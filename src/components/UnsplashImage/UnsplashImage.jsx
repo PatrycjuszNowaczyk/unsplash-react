@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import UnsplashImageInfo from '@components/UnsplashImage/UnsplashImageInfo'
+import ImagePlaceholder from '@assets/placeholderImage.svg'
 import './UnsplashImage.scss'
-import { useState } from 'react'
 
 /**
  * UnsplashImage component to show image packed with extras like showing tooltip
@@ -23,6 +24,7 @@ const UnsplashImage = ({ image }) => {
   
   const [tooltip, setTooltip] = useState(initialStateTooltip)
   const [timeoutId, setTimeoutId] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
   
   /**
    * Show tooltip on mouse move after some time
@@ -53,6 +55,10 @@ const UnsplashImage = ({ image }) => {
     setTimeoutId(id)
   }
   
+  const handleImageLoad = () => {
+    setIsLoaded(true)
+  }
+  
   /**
    * Hide tooltip on mouse out
    * @returns {void}
@@ -73,17 +79,34 @@ const UnsplashImage = ({ image }) => {
       // key={image.id ?? image.slug}
       className="UnsplashImage__wrapper"
     >
-      <a href={image.links.html} target="_blank" rel="noreferrer">
+      <a
+        className='UnslpashImage__link'
+        href={isLoaded ? image.links.html : null}
+        target="_blank"
+        rel="noreferrer noopener nofollow"
+      >
+        {console.log(image)}
         <img
-          src={image.urls.regular}
+          src={image.urls.full}
           alt={image.alt_description ?? null}
-          className="UnsplashImage__image"
+          className={`UnsplashImage__image ${isLoaded ? 'UnsplashImage__image--loaded' : ''}`}
           onMouseMove={(e) => handleMouseMove(e, image.alt_description)}
           onMouseOut={handleMouseOut}
+          onLoad={handleImageLoad}
           style={{
             aspectRatio: `${image.width}/${image.height}`
           }}
         />
+        
+        {false === isLoaded && (
+          <div className="UnsplashImage__loader">
+            <img className='UnsplashImage__loaderPlaceholder' src={ImagePlaceholder} />
+            <p className='UnsplashImage__loaderText' >
+              Loading
+              <span className='UnsplashImage__loaderTextDots'></span>
+            </p>
+          </div>
+        )}
       </a>
       {tooltip.show && (
         <div
@@ -96,7 +119,8 @@ const UnsplashImage = ({ image }) => {
           {tooltip.content ?? 'no description'}
         </div>
       )}
-      <UnsplashImageInfo image={image} />
+      
+      {isLoaded && <UnsplashImageInfo image={image} />}
     </div>
   )
 }

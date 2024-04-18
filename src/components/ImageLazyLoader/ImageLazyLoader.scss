@@ -4,6 +4,9 @@ $block-name: "ImageLazyLoader";
 .#{$block-name} {
   &__wrapper {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: var(--gap-xxl);
   }

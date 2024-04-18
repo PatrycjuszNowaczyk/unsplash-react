@@ -2,12 +2,14 @@ import React from 'react'
 import Loader from '@components/Loader/Loader'
 import './ImageLazyLoader.scss'
 
-function ImageLazyLoaderFunction(props, ref) {
+function ImageLazyLoaderFunction({allImagesLoaded}, ref) {
   return (
     <div ref={ref} className='ImageLazyLoader__wrapper'>
-      <div className="ImageLazyLoader__loaderContainer">
-        <Loader />
-      </div>
+      {true === allImagesLoaded ? 'All images are loaded' : (
+        <div className="ImageLazyLoader__loaderContainer">
+          <Loader />
+        </div>
+      ) }
     </div>
   )
 }

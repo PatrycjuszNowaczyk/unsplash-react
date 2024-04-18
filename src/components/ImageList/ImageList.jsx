@@ -11,9 +11,9 @@ import './ImageList.scss'
  * @returns {JSX.Element}
  * @constructor
  */
-const ImageList = ({ images , loadMoreImages}) => {
+const ImageList = ({ images , loadMoreImages, setImages}) => {
   
-  const loaderWrapper = useRef(null)
+  const loaderRef = useRef(null)
   const observer = useRef(null)
   const isLoading = useRef(false)
   
@@ -40,11 +40,21 @@ const ImageList = ({ images , loadMoreImages}) => {
         loadMoreImages(images.term, images.page)
           .finally(() => {
             isLoading.current = false
+            
           })
+      }
+      
+      if (images.page > images.totalPages) {
+        observer.current.disconnect()
+        
+        setImages(prevState => ({
+          ...prevState,
+          allLoaded: true,
+        }))
       }
     }, observerOptions)
     
-    observer.current.observe(loaderWrapper.current)
+    observer.current.observe(loaderRef.current)
     
     return () => {
       observer.current.disconnect()
@@ -61,14 +71,15 @@ const ImageList = ({ images , loadMoreImages}) => {
           />
         )
       })}
-      <ImageLazyLoader ref={loaderWrapper}/>
+      <ImageLazyLoader ref={loaderRef} allImagesLoaded={images.allLoaded}/>
     </div>
   )
 }
 
 ImageList.propTypes = {
   images: PropTypes.object.isRequired,
-  loadMoreImages: PropTypes.func.isRequired
+  loadMoreImages: PropTypes.func.isRequired,
+  setImages: PropTypes.func.isRequired,
 }
 
 export default ImageList

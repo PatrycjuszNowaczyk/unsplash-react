@@ -19,7 +19,9 @@ const App = () => {
     isLoading: true,
     error: null,
     term: 'random',
-    page: 1
+    page: 1,
+    totalPages: 0,
+    allLoaded: false
   }
   
   const [images, setImages] = useState(initialStateImages)
@@ -67,7 +69,9 @@ const App = () => {
         data: [...prevState.data , ...dataToSet],
         isLoading: false,
         error: null,
-        page: prevState.page + 1
+        page: prevState.page + 1,
+        totalPages: data.total_pages,
+        allLoaded: false
       })
     })
     console.log(data)
@@ -96,6 +100,7 @@ const App = () => {
         <ImageList
           images={images}
           loadMoreImages={() => getImages(images.term, images.page)}
+          setImages={setImages}
         />
       </MainLayout>
       <FooterLayout>

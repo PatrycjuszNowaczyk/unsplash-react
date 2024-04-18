@@ -84,7 +84,7 @@ const UnsplashImage = ({ image }) => {
         rel="noreferrer noopener nofollow"
       >
         <img
-          src={image.urls.full}
+          src={image.urls.regular}
           alt={image.alt_description ?? null}
           className={`UnsplashImage__image ${isLoaded ? 'UnsplashImage__image--loaded' : ''}`}
           onMouseMove={(e) => handleMouseMove(e, image.alt_description)}

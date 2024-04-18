@@ -20,8 +20,6 @@ const UnsplashImage = ({ image }) => {
     position: { x: 0, y: 0 },
   }
   
-  // console.log(image)
-  
   const [tooltip, setTooltip] = useState(initialStateTooltip)
   const [timeoutId, setTimeoutId] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -85,7 +83,6 @@ const UnsplashImage = ({ image }) => {
         target="_blank"
         rel="noreferrer noopener nofollow"
       >
-        {console.log(image)}
         <img
           src={image.urls.full}
           alt={image.alt_description ?? null}

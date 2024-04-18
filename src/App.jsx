@@ -74,7 +74,6 @@ const App = () => {
         allLoaded: false
       })
     })
-    console.log(data)
   }
   
   useEffect(() => {

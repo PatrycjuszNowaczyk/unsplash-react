@@ -40,12 +40,6 @@ const App = () => {
     
     const data = await toast.promise(fetchImages(term, page), {
       pending: 'Fetching images...',
-      success: {
-        render: 'Images fetched successfully',
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeButton: false
-      },
       error: 'Error fetching images',
     })
     

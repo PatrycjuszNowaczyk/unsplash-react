@@ -80,7 +80,7 @@ const App = () => {
   return (
     <>
       <ToastContainer
-        position='top-center'
+        position='top-right'
       />
       <HeaderLayout>
         <h1 className='text-center mb-xs'>Image search</h1>

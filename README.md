@@ -14,14 +14,14 @@ $`npm run dev`
 - Search images by keyword
 - Infinite scroll
 - Image details
-- Download image
-- Lightbox
+- Download image - (in progress)
+- Lightbox - (in progress)
 - Responsive design
 - Image loading skeleton
-- Light/dark mode
+- Light/dark mode - (in progress)
 - Error handling
 - Loading spinner
-- Unit tests
+- Unit tests - (in progress)
 
 ## Technologies
 - JavaScript Standard Style

@@ -13,7 +13,21 @@ import ImageList from '@components/ImageList/ImageList'
  * @returns {JSX.Element}
  */
 const App = () => {
-
+  
+  /**
+   * @typedef {Object} ImagesState
+   * @property {Array} data - The array of images objects.
+   * @property {boolean} isLoading - Loading state.
+   * @property {string|null} error - Error message.
+   * @property {string} term - Search term.
+   * @property {number} page - Current page.
+   * @property {number} totalPages - Total pages.
+   * @property {boolean} allLoaded - All images loaded state.
+   */
+  
+  /**
+   * @type {ImagesState}
+   */
   const initialStateImages = {
     data: [],
     isLoading: true,
@@ -24,6 +38,9 @@ const App = () => {
     allLoaded: false
   }
   
+  /**
+   * @type {[ImagesState, function]}
+   */
   const [images, setImages] = useState(initialStateImages)
   
   /**
@@ -40,6 +57,12 @@ const App = () => {
       setImages(prevState => ({...prevState, data: [], isLoading: true, term: term, page: 1, totalPages: 0, allLoaded: false}))
     }
     
+    /**
+     * @typedef {Object} FetchImagesResponse
+     * @property {Array} results - The array of images objects.
+     * @property {number} total_pages - Total pages.
+     * @property {number} total - Total images.
+     */
     const data = await toast.promise(fetchImages(term, page), {
       pending: 'Fetching images...',
       error: 'Error fetching images',

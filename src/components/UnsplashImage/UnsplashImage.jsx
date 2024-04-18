@@ -93,6 +93,7 @@ const UnsplashImage = ({ image }) => {
           style={{
             aspectRatio: `${image.width}/${image.height}`
           }}
+          loading='lazy'
         />
         
         {false === isLoaded && (

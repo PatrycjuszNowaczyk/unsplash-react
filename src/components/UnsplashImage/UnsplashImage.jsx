@@ -97,7 +97,7 @@ const UnsplashImage = ({ image }) => {
         
         {false === isLoaded && (
           <div className="UnsplashImage__loader">
-            <img className='UnsplashImage__loaderPlaceholder' src={ImagePlaceholder} />
+            <img className='UnsplashImage__loaderPlaceholder' src={ImagePlaceholder} alt="Image placeholder" />
             <p className='UnsplashImage__loaderText' >
               Loading
               <span className='UnsplashImage__loaderTextDots'></span>
